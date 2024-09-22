@@ -1,0 +1,35 @@
+<div class="container mt-5">
+  <h2>Customer List</h2>
+  <div class="search-container mb-3">
+    <input
+      type="text"
+      class="form-control search-input"
+      placeholder="Search..."
+      [(ngModel)]="searchQuery"
+    />
+    <a class="btn btn-primary" routerLink="/customers/new">Add New Customer</a>
+  </div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Birth Date</th>
+        <th>Address</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of filteredCustomers">
+        <td>{{ customer.name }}</td>
+        <td>{{ customer.phone }}</td>
+        <td>{{ customer.birthday | date: 'dd-MM-yyyy' }}</td>
+        <td>{{ customer.address }}</td>
+        <td>
+          <button class="btn btn-warning m-1" (click)="editCustomer(customer.id)">Edit</button>
+          <button class="btn btn-danger m-1" (click)="deleteCustomer(customer.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
